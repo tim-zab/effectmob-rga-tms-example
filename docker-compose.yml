@@ -1,0 +1,22 @@
+services:
+  app:
+    restart: unless-stopped
+    build: .
+    ports:
+      - "8189:8189"
+    depends_on:
+      - database
+    environment:
+      DB_URL: 'jdbc:postgresql://db:5432/example_db'
+      DB_USER: username
+      DB_PASSWORD: password
+  database:
+    container_name: db
+    image: postgres:17.4-alpine
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: example_db
+    ports:
+      - "5432:5432"
+    restart: unless-stopped

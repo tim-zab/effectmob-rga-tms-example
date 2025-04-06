@@ -1,0 +1,25 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: task-management-system-example
+  liquibase:
+    change-log: classpath:/db/changelog/liquibase-changelog.xml
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:example_db;MODE=PostgreSQL
+    username: ${USER_NAME:username}
+    password: ${USER_PASSWORD:password}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+jwt:
+  access:
+    secret: ${SECRET:mysecret46e5g4w64g64gr5g4ggihihihiojhkjkldwhhihyihojwfnlkn787wcHHhfhbfhf888}
+    expirationTime: ${EXPIRATION_TIME:7200}
